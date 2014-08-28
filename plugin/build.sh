@@ -38,7 +38,7 @@ if [[ $1 == r ]]; then
         command=./dist/build/$execName/$execName
     else
         case $extension in
-        c | h | hpp | cpp )
+        c | h | hpp | cpp | c1)
             [[ -e ./$name ]] && command="./$name"
             ;;
         tex )
@@ -112,6 +112,9 @@ else
             ;;
         cpp )
             $CXX -Wall -o "$name" "$file"
+            ;;
+        c0 )
+            cc0 -d -o "$name" "$file"
             ;;
         hpp )
             [[ -e $name.cpp ]] && $CXX -o "$name" "$name.cpp"
