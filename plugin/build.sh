@@ -127,7 +127,11 @@ else
             fi
             ;;
         tex )
-            $(dirname $0)/build-latex.sh "$name"
+            if which rubber >/dev/null; then
+                rubber -d "$name"
+            else
+                $(dirname $0)/build-latex.sh "$name"
+            fi
             ;;
         hs )
             ghc "$file" -o "$name"
